@@ -18,8 +18,8 @@ def bake_cookies(filepath):
     # write your code for this function below here.
     cookies = []
     with open(filepath, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
+        read_file = csv.DictReader(file)
+        for row in read_file:
             cookie = {
                 'id': int(row['id']),
                 'title': row['title'],
@@ -144,7 +144,7 @@ def solicit_order(cookies):
     :returns: A list of the ids and quantities of each cookies the user wants to order.
     """
     # write your code for this function below this line
-    orders = []
+    user_orders = []
 
     while True:
         user_response = input("Please enter the number of any cookie you would like to purchase (or type 'finished', 'done', 'quit', or 'exit' to complete your order): ").lower()
@@ -161,11 +161,11 @@ def solicit_order(cookies):
         if cookie:
             cookie_num = solicit_quantity(cookie_id, cookies)
             if cookie_num > 0:
-                orders.append({'id': cookie_id, 'quantity': cookie_num})
+                user_orders.append({'id': cookie_id, 'quantity': cookie_num})
         else:
             print("Sorry, the ID you entered is not valid. Please enter a valid cookie ID.")
 
-    return orders
+    return user_orders
 
 
 def display_order_total(order, cookies):
